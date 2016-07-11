@@ -56,10 +56,19 @@ body {
 }
 
 .colorTab {
-    color: #ffffff;
+    color: #ffffff !important;
     background-color: #26a69a;
 }
 
-input:disabled {
-    background-color: red
+select {
+    display: block;
+}
+
+#selectLang {
+    position: absolute;
+    right: 0;
+}
+
+.footer a {
+    color: inherit;
 }

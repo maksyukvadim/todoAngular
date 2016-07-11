@@ -1,15 +1,14 @@
-var app = angular.module('myApp', []);
-app.controller('todoCtrl', function ($scope) {
+var app = angular.module('myApp', ['ngResource']);
+app.controller('todoCtr', ['$scope', 'translationService', function ($scope, translationService) {
     $scope.todoList = JSON.parse(localStorage.getItem("todoListLoc")) || [];
-    console.log($scope.todoList);
     $scope.block = JSON.parse(localStorage.getItem("block")) || "All";
 
     $scope.todoAdd = function () {
-        if($scope.todoInput){
+        if ($scope.todoInput) {
             $scope.todoList.push({todoText: $scope.todoInput, done: false});
             $scope.todoInput = "";
         }
-
+        $scope.saveTodoList();
     };
 
     $scope.deleted = function (x) {
@@ -70,4 +69,30 @@ app.controller('todoCtrl', function ($scope) {
         };
     };
 
+
+   
+    $scope.translate = function () {
+        translationService.getTranslation($scope, $scope.selectedLanguage);
+    };
+
+    console.log($scope.selectedLanguage);
+    $scope.selectedLanguage = 'en';
+    $scope.translate();
+
+
+}]);
+
+
+app.service('translationService', function ($resource) {
+
+    this.getTranslation = function ($scope, language) {
+        var languageFilePath = 'translation_' + language + '.json';
+        console.log(languageFilePath);
+        $resource(languageFilePath).get(function (data) {
+            $scope.translation = data;
+        });
+    };
 });
+
+
+
