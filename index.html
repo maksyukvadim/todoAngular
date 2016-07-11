@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script src="scripts.js">
+    </script>
+    <link rel="stylesheet" href="main.css" charset="utf-8">
+</head>
+
+<body ng-app="myApp" ng-controller="todoCtrl">
+
+<div class="container1 bgColor">
+    <div class="row">
+        <div class="col s8 offset-s2">
+            <form ng-submit="todoAdd(); saveTodoList(); saveBlock();">
+                <input type="text" ng-model="todoInput" size="50" placeholder="Add New" autofocus
+                       id="mainInput">
+                <button type="submit" id="btnForSend" class="btn waves-effect waves-light btn-large" type="submit"
+                        name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+                <br>
+                <i id="checkAll" class="small material-icons mainColor" ng-click='allCheck()'>mode_edit</i>
+            </form>
+            <br>
+
+            <div ng-repeat="x in todoList | filter:listCompleted() track by $index " >
+                <input type="checkbox" ng-model="x.done" id="inp{{ $index+1 }}">
+                <label for="inp{{$index+1}}" ng-bind="x.todoText"></label>
+            <span class="btnRemove" ng-click="deleted($index)">
+              <a href="#">x</a>
+          </span>
+            </div>
+
+
+
+            <div class="footer">
+
+                <ul ng-click="saveTodoList(); selectTab(); saveBlock();">
+                    <li><span class="lengthItem">{{todoList.length}}</span> items left</li>
+                    <li ng-click="block='All'" ng-class="{colorTab: block == 'All'}">All</li>
+                    <li ng-click="block='Completed'" ng-class="{colorTab: block == 'Completed'}">Completed</li>
+                    <li ng-click="block='Active'" ng-class="{colorTab: block == 'Active'}">Active</li>
+                    <li ng-click="remove()">Clear completed</li>
+
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

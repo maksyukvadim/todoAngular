@@ -1,0 +1,65 @@
+.container1 {
+    position: relative;
+    margin-top: 15%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.btnRemove {
+    position: absolute;
+    margin-right: 10%;
+    right: 0;
+}
+
+#btnForSend {
+    position: relative;
+    margin-left: 35%;
+    width: auto;
+}
+
+#checkAll {
+    color: #26a69a;
+    -webkit-user-select: none;
+}
+
+.footer {
+    margin-top: 20px;
+    padding-bottom: 10%;
+}
+
+.footer ul {
+    width: 100%;
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+
+}
+
+.footer li {
+    font-size: 1em;
+    margin-left: 30px;
+    float: left;
+    display: inline;
+    text-align: center;
+    font-weight: bold;
+    padding: 6px;
+
+}
+
+.bgColor {
+    background-color: #f3f3f3;
+}
+
+body {
+    background-color: #26a69a;
+}
+
+.colorTab {
+    color: #ffffff;
+    background-color: #26a69a;
+}
+
+input:disabled {
+    background-color: red
+}
