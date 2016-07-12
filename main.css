@@ -1,29 +1,24 @@
-.container1 {
-    position: relative;
-    margin-top: 15%;
-    margin-left: 10%;
-    margin-right: 10%;
-}
-
-.btnRemove {
-    position: absolute;
-    margin-right: 10%;
-    right: 0;
-}
 
 #btnForSend {
     position: relative;
-    margin-left: 35%;
+    margin-left: 40%;
     width: auto;
+    background-color: #ff4081;
+    color: #f3f3f3;
+}
+
+#btnForSend i {
+    color: #f3f3f3;
 }
 
 #checkAll {
-    color: #26a69a;
+    color: #ff4081;
     -webkit-user-select: none;
 }
 
 .footer {
-    margin-top: 20px;
+
+    margin-top: 3%;
     padding-bottom: 10%;
 }
 
@@ -33,12 +28,13 @@
     margin: 0px;
     padding: 0px;
     list-style: none;
+    text-align: justify;
 
 }
 
 .footer li {
     font-size: 1em;
-    margin-left: 30px;
+    margin-left: 7%;
     float: left;
     display: inline;
     text-align: center;
@@ -51,17 +47,13 @@
     background-color: #f3f3f3;
 }
 
-body {
-    background-color: #26a69a;
+html, body {
+    background-color: #278a72;
 }
 
 .colorTab {
     color: #ffffff !important;
-    background-color: #26a69a;
-}
-
-select {
-    display: block;
+    background-color: #ff4081;
 }
 
 #selectLang {
@@ -71,4 +63,44 @@ select {
 
 .footer a {
     color: inherit;
+}
+
+.footer li > a:last-child {
+    user-select: none;
+}
+
+.container {
+    position: relative;
+    clear: both;
+    width: 70%;
+    background-color: #e7ffef;
+    margin: 0 auto;
+    padding: 10%;
+    padding-bottom: 5%;
+}
+
+#mainInput {
+    width: 70%;
+    margin-left: 10%;
+}
+
+#selectLang {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: inherit !important;
+}
+
+.iconRemoveItem {
+    position: absolute;
+    right: 10%;
+    font-size: 20px;
 }

@@ -1,8 +1,10 @@
-var app = angular.module('myApp', ['ngResource']);
+var app = angular.module('myApp', ['ngResource', 'ngMaterial']);
+
 app.controller('todoCtr', ['$scope', 'translationService', function ($scope, translationService) {
     $scope.todoList = JSON.parse(localStorage.getItem("todoListLoc")) || [];
-    $scope.block = JSON.parse(localStorage.getItem("block")) || "All";
-
+    $scope.filter = JSON.parse(localStorage.getItem("filter")) || "All";
+    $scope.langs = ['en', 'ru'];
+    $scope.lang = 'en';
     $scope.todoAdd = function () {
         if ($scope.todoInput) {
             $scope.todoList.push({todoText: $scope.todoInput, done: false});
@@ -25,11 +27,11 @@ app.controller('todoCtr', ['$scope', 'translationService', function ($scope, tra
         if (a == 0) {
             angular.forEach($scope.todoList, function (x) {
                 if (x.done) x.done = false;
-
             });
         }
     };
-    $scope.remove = function () {
+
+    $scope.removeAll = function () {
         var oldList = $scope.todoList;
         $scope.todoList = [];
         angular.forEach(oldList, function (x) {
@@ -41,47 +43,39 @@ app.controller('todoCtr', ['$scope', 'translationService', function ($scope, tra
         var saveList = JSON.stringify($scope.todoList);
         localStorage.setItem("todoListLoc", saveList);
     };
-    $scope.saveBlock = function () {
-        var saveBlock = JSON.stringify($scope.block);
-        localStorage.setItem("block", saveBlock);
+
+    $scope.saveFilter = function () {
+        var saveFilter = JSON.stringify($scope.filter);
+        localStorage.setItem("filter", saveFilter);
     };
 
-    $scope.listCompleted = function () {
+    $scope.listItem = function () {
         return function (items) {
-            if ($scope.block == "All") {
-
+            if ($scope.filter == "All") {
                 return true;
-
-            } else if ($scope.block == "Completed") {
-
+            } else if ($scope.filter == "Completed") {
                 if (items.done) {
-
                     return items;
                 }
-
             } else {
                 if (!items.done) {
-
                     return items;
                 }
             }
-
         };
     };
 
-
-   
     $scope.translate = function () {
-        translationService.getTranslation($scope, $scope.selectedLanguage);
+        translationService.getTranslation($scope, $scope.lang);
     };
-
-    console.log($scope.selectedLanguage);
-    $scope.selectedLanguage = 'en';
-    $scope.translate();
-
+    $scope.$watch('lang', function () {
+        $scope.translate();
+    });
+    $scope.$watch('filter', function () {
+        $scope.saveFilter();
+    });
 
 }]);
-
 
 app.service('translationService', function ($resource) {
 
@@ -93,6 +87,5 @@ app.service('translationService', function ($resource) {
         });
     };
 });
-
 
 
